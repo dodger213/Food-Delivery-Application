@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Navigate, Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
+import Homepage from "./pages/Homepage/Homepage";
+import SignupPage from "./pages/Authpage/SignupPage";
+import SigninPage from "./pages/Authpage/SigninPage";
+import { useAuthContext } from "./context/AuthContext";
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export default function App() {
+  const { isAuth } = useAuthContext();
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={isAuth ? <Homepage /> : <Navigate to="/Sign-in" />} />
+          <Route path="/Sign-up" element={!isAuth ? <SignupPage /> : <Navigate to="/" />} />
+          <Route path="/Sign-in" element={!isAuth ? <SigninPage /> : <Navigate to="/" />} />
+        </Route>
+      </Routes>
     </>
-  )
+  );
 }
-
-export default App
