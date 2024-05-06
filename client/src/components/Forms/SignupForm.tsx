@@ -24,8 +24,8 @@ export default function SignupForm() {
   const {mutate, isPending} = useMutation({
     mutationKey: ['signup'],
     mutationFn: SignupUserApi,
-    onSuccess: () => {
-      toast.success("Your Account has been Created")
+    onSuccess: (data) => {
+      toast.success(data?.message)
       queryClient.invalidateQueries({ queryKey: ["authuser"]});
       navigate('/')
     },

@@ -53,6 +53,8 @@ export const SignOutUser = AsyncWrapper(async (req: Request, res: Response) => {
         secure: false,
         maxAge: 0
       })
+
+      res.status(HttpStatusCode.OK).json({ message: SuccessMessage.USER_LOGOUT_SUCCESS });
 });
 
 export const VerifyUser = AsyncWrapper(async (req: Request, res: Response) => {

@@ -55,6 +55,7 @@ exports.SignOutUser = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, 
         secure: false,
         maxAge: 0
     });
+    res.status(utils_1.HttpStatusCode.OK).json({ message: utils_1.SuccessMessage.USER_LOGOUT_SUCCESS });
 }));
 exports.VerifyUser = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).send({ userId: req.userId });

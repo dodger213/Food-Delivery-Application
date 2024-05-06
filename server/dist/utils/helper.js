@@ -12,8 +12,9 @@ var HttpStatusCode;
     HttpStatusCode[HttpStatusCode["FORBIDDEN"] = 403] = "FORBIDDEN";
 })(HttpStatusCode || (exports.HttpStatusCode = HttpStatusCode = {}));
 exports.SuccessMessage = {
-    USER_REGISTER_SUCCESS: 'Registration Success',
-    USER_LOGIN_SUCCESS: "Login Success",
+    USER_REGISTER_SUCCESS: 'Your Account has been Created',
+    USER_LOGIN_SUCCESS: "Your have Logged In",
+    USER_LOGOUT_SUCCESS: 'You have been Successfully logged out'
 };
 exports.ErrorMessage = {
     DEFAULT_ERROR_MESSAGE: "Something went wrong",

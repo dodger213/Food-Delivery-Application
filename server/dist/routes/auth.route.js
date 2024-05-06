@@ -31,5 +31,5 @@ const middleware_1 = require("../middleware");
 exports.AuthRoute = (0, express_1.Router)();
 exports.AuthRoute.post("/SignUp", (0, middleware_1.RateLimiterMiddleware)(utils_1.ErrorMessage.RATE_LIMIT_ERROR, 2), (0, middleware_1.ValidationMiddleware)(utils_1.SignupSchema), auth.SignUpUser);
 exports.AuthRoute.post("/SignIn", (0, middleware_1.ValidationMiddleware)(utils_1.SigninSchema), auth.SignInUser);
-exports.AuthRoute.post("/SignOut", auth.SignOutUser);
+exports.AuthRoute.post("/SignOutUser", auth.SignOutUser);
 exports.AuthRoute.get("/verifyAuth", middleware_1.AuthMiddleware, auth.VerifyUser);

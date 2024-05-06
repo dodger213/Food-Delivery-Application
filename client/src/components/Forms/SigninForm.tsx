@@ -22,8 +22,8 @@ export default function SigninForm() {
   const {mutate, isPending} = useMutation({
     mutationKey: ['signin'],
     mutationFn: SigninUserApi,
-    onSuccess: () => {
-      toast.success("Welcome to FoodZone")
+    onSuccess: (data) => {
+      toast.success(data?.message)
      
     },
     onError: (error) => {

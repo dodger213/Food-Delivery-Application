@@ -10,5 +10,5 @@ RateLimiterMiddleware(ErrorMessage.RATE_LIMIT_ERROR, 2),
 ValidationMiddleware(SignupSchema), auth.SignUpUser);
 
 AuthRoute.post("/SignIn", ValidationMiddleware(SigninSchema), auth.SignInUser);
-AuthRoute.post("/SignOut", auth.SignOutUser);
+AuthRoute.post("/SignOutUser", auth.SignOutUser);
 AuthRoute.get("/verifyAuth", AuthMiddleware, auth.VerifyUser);
