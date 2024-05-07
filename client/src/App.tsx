@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import SignupPage from "./pages/Authpage/SignupPage";
 import SigninPage from "./pages/Authpage/SigninPage";
 import { useAuthContext } from "./context/AuthContext";
+import Menupage from "./pages/Menupage/Menupage";
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Route index element={<Homepage />} />
           <Route path="/Sign-up" element={!isAuth ? <SignupPage /> : <Navigate to="/" />} />
           <Route path="/Sign-in" element={!isAuth ? <SigninPage /> : <Navigate to="/" />} />
+          <Route path="/menu" element={<Menupage />} />
         </Route>
       </Routes>
     </>

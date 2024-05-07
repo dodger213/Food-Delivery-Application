@@ -3,10 +3,25 @@ import { z } from "zod";
 const base_url = import.meta.env.VITE_BASE_URL;
 
 type ReturnType = {
-  message: string
-}
+  message: string;
+};
 
-export const SignupUserApi = async (SignupData: z.infer<typeof SignupSchema>) :Promise<ReturnType> => {
+export type FoodType = {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  discount: number;
+  createdAt: string;
+  ingredients: [];
+  image: string;
+  vegetarian: boolean;
+  available: boolean;
+  starRating: number;
+};
+
+export const SignupUserApi = async (SignupData: z.infer<typeof SignupSchema>): Promise<ReturnType> => {
   const response = await fetch(`${base_url}/auth/SignUp`, {
     method: "POST",
     credentials: "include",
@@ -24,7 +39,7 @@ export const SignupUserApi = async (SignupData: z.infer<typeof SignupSchema>) :P
   return data;
 };
 
-export const SigninUserApi = async (SigninData: z.infer<typeof SigninSchema>) :Promise<ReturnType> => {
+export const SigninUserApi = async (SigninData: z.infer<typeof SigninSchema>): Promise<ReturnType> => {
   const response = await fetch(`${base_url}/auth/SignIn`, {
     method: "POST",
     credentials: "include",
@@ -56,9 +71,7 @@ export const VerifyUserApi = async () => {
   return data;
 };
 
-
-
-export const LogoutUserApi = async () : Promise<ReturnType> => {
+export const LogoutUserApi = async (): Promise<ReturnType> => {
   const response = await fetch(`${base_url}/auth/SignOutUser`, {
     method: "POST",
     credentials: "include",
@@ -70,10 +83,57 @@ export const LogoutUserApi = async () : Promise<ReturnType> => {
     throw new Error(data.message);
   }
 
-  return data
+  return data;
 };
 
+export const SearchApi = async (value: string) => {
+  console.log(value);
+};
 
-export const SearchApi = async(value:string) => {
-  console.log(value)
-}
+export const GetAllFoodListApi = async (): Promise<FoodType[]> => {
+  const response = await fetch(`${base_url}/food/all-foodlist`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+export const GetVegFoodApi = async (): Promise<FoodType[]> => {
+  const response = await fetch(`${base_url}/food/veg-food`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+export const GetNonVegFoodApi = async (): Promise<FoodType[]> => {
+  const response = await fetch(`${base_url}/food/nonveg-food`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+export const GetRecentlyAddedFoodApi = async (): Promise<FoodType[]> => {
+  const response = await fetch(`${base_url}/food/recent-food`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};

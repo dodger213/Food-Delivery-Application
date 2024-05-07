@@ -25,5 +25,6 @@ exports.ErrorMessage = {
     INVALID_EMAIL: "Invalid email",
     NOT_AUTHORIZED: "You are not authorized to access this route",
     INVALID_CREDENTIALS: "Invalid credentials",
-    RATE_LIMIT_ERROR: 'You have already tried registering twice. Please wait for a while'
+    RATE_LIMIT_ERROR: 'You have already tried registering twice. Please wait for a while',
+    FOOD_ALREADY_EXIST: 'Food already exist'
 };
