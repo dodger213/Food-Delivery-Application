@@ -86,8 +86,16 @@ export const LogoutUserApi = async (): Promise<ReturnType> => {
   return data;
 };
 
-export const SearchApi = async (value: string) => {
-  console.log(value);
+export const SearchApi = async (searchTerm: string) : Promise<FoodType[]> => {
+  const response = await fetch(`${base_url}/food/search/${searchTerm}`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
 };
 
 export const GetAllFoodListApi = async (): Promise<FoodType[]> => {

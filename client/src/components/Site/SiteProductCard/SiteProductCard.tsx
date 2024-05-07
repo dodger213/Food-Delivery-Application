@@ -11,14 +11,16 @@ export default function SiteProductCard({item}: SiteProductCardProps) {
   return (
     <Card>
       <CardHeader className="pb-2">
-        <img src="https://via.placeholder.com/300" alt="" />
+        <img src={item.image} alt={item.name} className="h-40"/>
       </CardHeader>
       <CardContent className="flex items-center justify-between py-2">
         <p className="truncate text-xl font-bold tracking-wider">{item.name}</p>
+      </CardContent>
+      <CardContent className="py-1">
         <img src={starRating} alt={"rating"} />
       </CardContent>
       <CardFooter className="py-1">
-        <p className="text-sm tracking-wide">{item.description}</p>
+        <p className="h-16 text-sm tracking-wide">{item.description}</p>
       </CardFooter>
       <CardFooter className="flex justify-between py-2">
         <p className="text-xl font-semibold">$ {item.price}</p>

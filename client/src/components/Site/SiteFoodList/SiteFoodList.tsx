@@ -19,7 +19,7 @@ export default function SiteFoodList({selected}: SiteFoodListProps) {
       <h1 className="text-center text-4xl font-extrabold">Top Dishes for you</h1>
       <div className="mt-8 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8">
         {products?.map((item) => {
-          if(selected === 'All' || selected === item.category) {
+          if(selected === 'All' || selected.toLowerCase() === item.category.toLowerCase()) {
             return (
               <SiteProductCard key={item._id} item={item} />
             )

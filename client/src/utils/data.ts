@@ -9,7 +9,7 @@ import menu_8 from '../assets/menu_8.png'
 
 export const menulist = [
     {
-        name: "Main Course",
+        name: "Pizza",
         image: menu_1
     },
     {

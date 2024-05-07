@@ -15,8 +15,9 @@ export default function SearchCommand() {
   const debounceValue = useDebounce(query, 500)
 
   const {data: searchData, isLoading:loading} = useQuery({
-    queryKey: ['search'],
-    queryFn: () => SearchApi(debounceValue)
+    queryKey: ['search', debounceValue],
+    queryFn: () => SearchApi(debounceValue),
+    enabled: !!debounceValue
   })
 
   return (
@@ -26,7 +27,7 @@ export default function SearchCommand() {
         <span>Search here...</span>
         <abbr
           title="Control"
-          className="border px-1.5 py-0.5 bg-secondary text-xs font-medium shadow-sm disabled:opacity-50 rounded select-none no-underline ml-10"
+          className="bg-secondary ml-10 select-none rounded border px-1.5 py-0.5 text-xs font-medium no-underline shadow-sm disabled:opacity-50"
         >
           Ctrl K
         </abbr>
@@ -56,7 +57,7 @@ export default function SearchCommand() {
           ) : (
             <CommandGroup>
               {searchData?.map((group) => (
-                <CommandItem key={group?.name} className="h-fit flex justify-between mr-20" value={group.name}>
+                <CommandItem key={group?.name} className="mr-20 flex h-fit justify-between" value={group.name}>
                   <img src={group?.image} alt={group.name} className="h-12 w-20" />
 
                   <span className="truncate font-bold">{group?.name}</span>
