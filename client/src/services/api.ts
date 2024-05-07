@@ -145,3 +145,37 @@ export const GetRecentlyAddedFoodApi = async (): Promise<FoodType[]> => {
 
   return data;
 };
+
+
+export const GetUserCartItems = async () => {
+  const response = await fetch(`${base_url}/cart/user-cart`, {
+    credentials: "include"
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+
+export const AddToCart = async (productId: string) : Promise<ReturnType> => {
+  const response = await fetch(`${base_url}/cart/add-cart`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({productId, count: 1}),
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  return data;
+};

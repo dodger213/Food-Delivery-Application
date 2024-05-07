@@ -26,5 +26,6 @@ exports.app.use((0, express_mongo_sanitize_1.default)());
 exports.app.disable('x-powered-by');
 exports.app.use('/api/auth', routes_1.AuthRoute);
 exports.app.use('/api/food', routes_1.FoodRoute);
+exports.app.use('/api/cart', routes_1.CartRoute);
 exports.app.use(middleware_1.RouteNotFoundMiddleware);
 exports.app.use(middleware_1.ErrorMiddleware);

@@ -20,6 +20,7 @@ export default function UserProfile() {
     onSuccess: (data) => {
       toast.success(data?.message)
       queryClient.invalidateQueries({ queryKey: ["authuser"] });
+      queryClient.invalidateQueries({ queryKey: ["cart-items"] });
     },
     onError: (error) => {
       toast.error(error.message)
@@ -37,7 +38,7 @@ export default function UserProfile() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">
-              <CircleUser className="h-5 w-5" />
+              <CircleUser className="size-5" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
