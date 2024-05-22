@@ -1,6 +1,7 @@
-import { GetAllFoodListApi } from "@/services/api"
+
 import { useQuery } from "@tanstack/react-query"
 import SiteProductCard from "../SiteProductCard/SiteProductCard"
+import { GetAllFoodListApi } from "@/services/food.api"
 
 
 interface SiteFoodListProps {
@@ -14,7 +15,6 @@ export default function SiteFoodList({selected}: SiteFoodListProps) {
     queryFn: GetAllFoodListApi
   })
 
-  console.log(selected)
 
   return (
     <section>

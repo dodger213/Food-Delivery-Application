@@ -3,7 +3,8 @@ import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, C
 import { Skeleton } from "@/components/ui/skeleton";
 import useDebounce from "@/hooks/useDebounce";
 import { cn } from "@/lib/utils";
-import { SearchApi } from "@/services/api";
+import { SearchApi } from "@/services/food.api";
+import { ProductProps } from "@/services/interface";
 import { useQuery } from "@tanstack/react-query";
 import { SearchIcon } from "lucide-react";
 import { useState } from "react";
@@ -56,7 +57,7 @@ export default function SearchCommand() {
             </div>
           ) : (
             <CommandGroup>
-              {searchData?.map((group) => (
+              {searchData?.map((group:ProductProps) => (
                 <CommandItem key={group?.name} className="mr-20 flex h-fit justify-between" value={group.name}>
                   <img src={group?.image} alt={group.name} className="h-12 w-20" />
 

@@ -1,4 +1,5 @@
-import { GetNonVegFoodApi } from "@/services/api"
+
+import { GetNonVegFoodApi } from "@/services/food.api"
 import SiteProductCard from "../SiteProductCard/SiteProductCard"
 import { useQuery } from "@tanstack/react-query"
 

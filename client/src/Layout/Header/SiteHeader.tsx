@@ -6,8 +6,8 @@ import UserProfile from "./UserProfile/UserProfile";
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-background">
-    <nav className="flex justify-between items-center h-16 container">
+    <header className="bg-background sticky top-0 z-50 border-b">
+    <nav className="container flex h-16 items-center justify-between">
     <Navigation />
     <div className="flex items-center space-x-4">
       <SearchCommand />

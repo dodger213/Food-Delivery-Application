@@ -3,9 +3,9 @@ import { LoaderCircle } from "lucide-react";
 export default function LoadingSpinner() {
   return (
     <div className="relative flex h-screen w-screen">
-      <div className="absolute top-0 w-screen bg-primary h-[2px] ease-linear"></div>
+      <div className="bg-primary absolute top-0 h-[2px] w-screen ease-linear"></div>
       <div className="m-auto">
-        <LoaderCircle className="animate-spin text-primary h-10 w-10" />
+        <LoaderCircle className="text-primary size-10 animate-spin" />
       </div>
     </div>
   );

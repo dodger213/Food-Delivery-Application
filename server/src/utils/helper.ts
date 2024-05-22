@@ -12,7 +12,11 @@ export enum HttpStatusCode {
 export const SuccessMessage = {
   USER_REGISTER_SUCCESS: 'Your Account has been Created',
   USER_LOGIN_SUCCESS: "Your have Logged In",
-  USER_LOGOUT_SUCCESS : 'You have been Successfully logged out'
+  USER_LOGOUT_SUCCESS : 'You have been Successfully logged out',
+  PRODUCT_ADDED_SUCCESSFULLY: 'Product added successfully',
+  PRODUCT_UPDATED_SUCCESSFULLY: 'Product updated successfully',
+  PRODUCT_DELETED_SUCCESSFULLY: 'Product deleted successfully',
+  
 }
 
 export const ErrorMessage = { 
@@ -25,6 +29,7 @@ export const ErrorMessage = {
   NOT_AUTHORIZED: "You are not authorized to access this route",
   INVALID_CREDENTIALS: "Invalid credentials",
   RATE_LIMIT_ERROR: 'You have already tried registering twice. Please wait for a while',
-
-  FOOD_ALREADY_EXIST: 'Food already exist'
+  PRODUCT_ALREADY_EXIST: 'Product already exist',
+  PRODUCT_NOT_FOUND: 'Product not found',
+  PRODUCT_COUNT: 'Count must be greater than zero',
 }

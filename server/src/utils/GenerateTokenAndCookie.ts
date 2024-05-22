@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 
 
 export const GenerateTokenAndCookie = (userId: unknown, res: Response) => {
-  const token = jwt.sign({ userId }, process.env.SECRET_KEY as string, {
-    expiresIn: "1h",
+  const token = jwt.sign({ userId }, process.env.SECRET_KEY, {
+    expiresIn: "2h",
   });
 
   res.cookie("foodZone", token, {

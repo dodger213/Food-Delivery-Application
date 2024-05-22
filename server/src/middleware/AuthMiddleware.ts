@@ -1,9 +1,9 @@
 import jwt, { JwtPayload } from 'jsonwebtoken'
 import { Response, Request, NextFunction } from "express";
-import { ErrorMessage, HttpStatusCode } from "../utils";
+import { AsyncWrapper, ErrorMessage, HttpStatusCode } from "../utils";
 
 
-export const AuthMiddleware = async(req: Request, res: Response, next:NextFunction) => {
+export const AuthMiddleware = AsyncWrapper(async(req: Request, res: Response, next:NextFunction) => {
     const token = req.cookies['foodZone']
 
 
@@ -11,7 +11,7 @@ export const AuthMiddleware = async(req: Request, res: Response, next:NextFuncti
         return res.status(HttpStatusCode.UNAUTHORIZED).json({message: ErrorMessage.NOT_AUTHORIZED})
     }
 
-    const decodeToken = await jwt.verify(token, process.env.SECRET_KEY as string)
+    const decodeToken = await jwt.verify(token, process.env.SECRET_KEY)
 
     if(!decodeToken) {
         return res.status(HttpStatusCode.UNAUTHORIZED).json({message: ErrorMessage.NOT_AUTHORIZED})
@@ -19,4 +19,4 @@ export const AuthMiddleware = async(req: Request, res: Response, next:NextFuncti
 
     req.userId = (decodeToken as JwtPayload).userId
     next()
-}
+})

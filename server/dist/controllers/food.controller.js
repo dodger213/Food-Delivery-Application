@@ -18,7 +18,7 @@ exports.CreateProduct = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0
     const { name, description, price, category, discount, ingredients, starRating } = req.body;
     const findFood = yield models_1.FoodModel.findOne({ name });
     if (findFood) {
-        return res.status(400).json({ message: utils_1.ErrorMessage.FOOD_ALREADY_EXIST });
+        return res.status(400).json({ message: utils_1.ErrorMessage.PRODUCT_ALREADY_EXIST });
     }
     const imageUrl = yield uploadImage(req.file);
     const newFood = new models_1.FoodModel({ name, description, price, category, discount, starRating, ingredients, image: imageUrl });

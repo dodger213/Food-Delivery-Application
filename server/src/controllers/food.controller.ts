@@ -12,7 +12,7 @@ export const CreateProduct = AsyncWrapper(async(req:Request, res:Response) => {
     const findFood = await FoodModel.findOne({name})
 
     if(findFood) {
-        return res.status(400).json({message: ErrorMessage.FOOD_ALREADY_EXIST})
+        return res.status(400).json({message: ErrorMessage.PRODUCT_ALREADY_EXIST})
     }
     const imageUrl = await uploadImage(req.file as Express.Multer.File);
 

@@ -5,16 +5,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAuthContext } from "@/context/AuthContext";
 import UpdateCart from "@/Layout/Header/CartSheet/UpdateCart";
 import { cn } from "@/lib/utils";
-import { GetUserCartItems } from "@/services/api";
+import { CartItemProps } from "@/services/cart.api";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 export default function Cartpage() {
   const { isAuth } = useAuthContext();
-  const { data } = useQuery({
-    queryKey: ["cart-items"],
-    queryFn: GetUserCartItems,
-  });
+  const { data } = useQuery<CartItemProps>({queryKey: ["cart-items"]});
 
  
 

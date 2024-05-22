@@ -10,17 +10,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateCartItem = exports.RemoveFromCart = exports.CreateUserCart = exports.GetAllCartItems = void 0;
+const helper_1 = require("./../utils/helper");
 const models_1 = require("../models");
 const utils_1 = require("../utils");
 exports.GetAllCartItems = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const cart = yield models_1.CartModel.findOne({ orderBy: req.userId }).populate("products.product");
-    res.status(200).json(cart);
+    res.status(utils_1.HttpStatusCode.OK).json(cart);
 }));
 exports.CreateUserCart = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { productId, count } = req.body;
     const product = yield models_1.FoodModel.findById(productId);
     if (!product) {
-        return res.status(400).json({ message: "Product not found" });
+        return res.status(utils_1.HttpStatusCode.BAD_REQUEST).json({ message: helper_1.ErrorMessage.PRODUCT_NOT_FOUND });
     }
     const cart = yield models_1.CartModel.findOne({ orderBy: req.userId });
     if (!cart) {
@@ -31,7 +32,7 @@ exports.CreateUserCart = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 
             products: [{ product: productId, count, price: product.price }],
             cartTotal: total,
         });
-        return res.status(201).json(newCart);
+        return res.status(utils_1.HttpStatusCode.CREATED).json(newCart);
     }
     const index = cart.products.findIndex((p) => { var _a; return ((_a = p === null || p === void 0 ? void 0 : p.product) === null || _a === void 0 ? void 0 : _a.toString()) === productId; });
     if (index > -1) {
@@ -47,24 +48,24 @@ exports.CreateUserCart = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 
         cart.cartTotal += product.price * count;
     }
     yield cart.save();
-    res.json({ message: "product added to cart" });
+    res.json({ message: helper_1.SuccessMessage.PRODUCT_ADDED_SUCCESSFULLY });
 }));
 exports.RemoveFromCart = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { productId } = req.params;
     const product = yield models_1.FoodModel.findById(productId);
     if (!product) {
-        return res.status(400).json({ message: "Product not found" });
+        return res.status(utils_1.HttpStatusCode.BAD_REQUEST).json({ message: helper_1.ErrorMessage.PRODUCT_NOT_FOUND });
     }
     let cart = yield models_1.CartModel.findOne({ orderBy: req.userId });
     if (!cart) {
-        return res.json({ message: "product not found" });
+        return res.json({ message: helper_1.ErrorMessage.PRODUCT_NOT_FOUND });
     }
     const index = cart.products.findIndex((p) => { var _a; return ((_a = p === null || p === void 0 ? void 0 : p.product) === null || _a === void 0 ? void 0 : _a.toString()) === productId; });
     if (index !== -1) {
         cart.products.splice(index, 1);
         cart.cartTotal -= product.price;
         yield cart.save();
-        res.status(200).json({ message: "Item removed from cart" });
+        res.status(utils_1.HttpStatusCode.OK).json({ message: helper_1.SuccessMessage.PRODUCT_DELETED_SUCCESSFULLY });
     }
 }));
 exports.UpdateCartItem = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -72,10 +73,10 @@ exports.UpdateCartItem = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 
     const { count } = req.body;
     const product = yield models_1.FoodModel.findById(productId);
     if (!product) {
-        return res.status(400).json({ message: "Product not found" });
+        return res.status(utils_1.HttpStatusCode.BAD_REQUEST).json({ message: helper_1.ErrorMessage.PRODUCT_NOT_FOUND });
     }
     if (count <= 0) {
-        return res.status(400).json({ message: "Count must be greater than zero" });
+        return res.status(utils_1.HttpStatusCode.BAD_REQUEST).json({ message: helper_1.ErrorMessage.PRODUCT_COUNT });
     }
     const cart = yield models_1.CartModel.findOne({ orderBy: req.userId });
     if (cart) {
@@ -86,7 +87,7 @@ exports.UpdateCartItem = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 
             item.price = product.price * count;
             cart.cartTotal = cart.cartTotal - oldPrice + item.price;
             yield cart.save();
-            res.status(200).json({ message: "Cart updated", item });
+            res.status(utils_1.HttpStatusCode.OK).json({ message: helper_1.SuccessMessage.PRODUCT_UPDATED_SUCCESSFULLY });
         }
     }
 }));

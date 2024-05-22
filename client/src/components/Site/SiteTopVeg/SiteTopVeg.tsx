@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import SiteProductCard from "../SiteProductCard/SiteProductCard";
-import { GetVegFoodApi } from "@/services/api";
+import { GetVegFoodApi } from "@/services/food.api";
 
 
 export default function SiteTopVeg() {

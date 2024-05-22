@@ -12,10 +12,15 @@ const ErrorMiddleware = (error, req, res, next) => {
     if (error instanceof utils_1.CustomError) {
         return res.status(statusCode).json({ message: error.message });
     }
-    if (error.name === 'jwt expired') {
-        return res.status(statusCode).json({ message: error.message });
+    if (error.name === 'TokenExpiredError') {
+        res.cookie("foodZone", "", {
+            expires: new Date(0),
+            httpOnly: true,
+            secure: false,
+            maxAge: 0
+        });
+        return res.status(utils_1.HttpStatusCode.UNAUTHORIZED).json({ message: error.message });
     }
-    console.log(error.message);
     return res.status(statusCode).json({ message: utils_1.ErrorMessage.DEFAULT_ERROR_MESSAGE });
 };
 exports.ErrorMiddleware = ErrorMiddleware;

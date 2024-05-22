@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const utils_1 = require("../utils");
-const AuthMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.AuthMiddleware = (0, utils_1.AsyncWrapper)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.cookies['foodZone'];
     if (!token) {
         return res.status(utils_1.HttpStatusCode.UNAUTHORIZED).json({ message: utils_1.ErrorMessage.NOT_AUTHORIZED });
@@ -26,5 +26,4 @@ const AuthMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     }
     req.userId = decodeToken.userId;
     next();
-});
-exports.AuthMiddleware = AuthMiddleware;
+}));

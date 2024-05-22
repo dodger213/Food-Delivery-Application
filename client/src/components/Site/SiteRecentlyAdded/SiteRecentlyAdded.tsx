@@ -1,6 +1,7 @@
-import { GetRecentlyAddedFoodApi } from "@/services/api"
+
 import { useQuery } from "@tanstack/react-query"
 import SiteProductCard from "../SiteProductCard/SiteProductCard"
+import { GetRecentlyAddedFoodApi } from "@/services/food.api"
 
 
 export default function SiteRecentlyAdded() {

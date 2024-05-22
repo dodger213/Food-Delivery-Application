@@ -20,7 +20,7 @@ const NavLinks = [
 export default function Navigation() {
   const [selected, setSelected] = useState("Home");
   return (
-    <div className="flex gap-20 items-center">
+    <div className="flex items-center gap-20">
       <Link
         to={"/"}
         className="flex items-center gap-2"

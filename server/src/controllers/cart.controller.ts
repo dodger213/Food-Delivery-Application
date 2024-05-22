@@ -1,11 +1,11 @@
+import { ErrorMessage, SuccessMessage } from './../utils/helper';
 import { CartModel, FoodModel } from "../models";
-import { AsyncWrapper } from "../utils";
+import { AsyncWrapper, HttpStatusCode } from "../utils";
 import { Request, Response } from "express";
 
 export const GetAllCartItems = AsyncWrapper(async (req: Request, res: Response) => {
   const cart = await CartModel.findOne({ orderBy: req.userId }).populate("products.product");
-
-  res.status(200).json(cart);
+  res.status(HttpStatusCode.OK).json(cart);
 });
 
 export const CreateUserCart = AsyncWrapper(async (req: Request, res: Response) => {
@@ -14,7 +14,7 @@ export const CreateUserCart = AsyncWrapper(async (req: Request, res: Response) =
   const product = await FoodModel.findById(productId);
 
   if (!product) {
-    return res.status(400).json({ message: "Product not found" });
+    return res.status(HttpStatusCode.BAD_REQUEST).json({ message: ErrorMessage.PRODUCT_NOT_FOUND });
   }
 
   const cart = await CartModel.findOne({ orderBy: req.userId });
@@ -27,7 +27,7 @@ export const CreateUserCart = AsyncWrapper(async (req: Request, res: Response) =
       cartTotal: total,
     });
 
-    return res.status(201).json(newCart);
+    return res.status(HttpStatusCode.CREATED).json(newCart);
   }
 
   const index = cart.products.findIndex((p) => p?.product?.toString() === productId);
@@ -44,7 +44,7 @@ export const CreateUserCart = AsyncWrapper(async (req: Request, res: Response) =
   }
 
   await cart.save();
-  res.json({ message: "product added to cart" });
+  res.json({ message: SuccessMessage.PRODUCT_ADDED_SUCCESSFULLY });
 });
 
 export const RemoveFromCart = AsyncWrapper(async (req: Request, res: Response) => {
@@ -53,13 +53,13 @@ export const RemoveFromCart = AsyncWrapper(async (req: Request, res: Response) =
   const product = await FoodModel.findById(productId);
 
   if (!product) {
-    return res.status(400).json({ message: "Product not found" });
+    return res.status(HttpStatusCode.BAD_REQUEST).json({ message: ErrorMessage.PRODUCT_NOT_FOUND });
   }
 
   let cart = await CartModel.findOne({ orderBy: req.userId });
 
   if (!cart) {
-    return res.json({ message: "product not found" });
+    return res.json({ message: ErrorMessage.PRODUCT_NOT_FOUND });
   }
   const index = cart.products.findIndex((p) => p?.product?.toString() === productId);
 
@@ -67,7 +67,7 @@ export const RemoveFromCart = AsyncWrapper(async (req: Request, res: Response) =
     cart.products.splice(index, 1);
     cart.cartTotal! -= product.price;
     await cart.save();
-    res.status(200).json({ message: "Item removed from cart" });
+    res.status(HttpStatusCode.OK).json({ message: SuccessMessage.PRODUCT_DELETED_SUCCESSFULLY });
   }
 });
 
@@ -78,11 +78,11 @@ export const UpdateCartItem = AsyncWrapper(async (req: Request, res: Response) =
   const product = await FoodModel.findById(productId);
 
   if (!product) {
-    return res.status(400).json({ message: "Product not found" });
+    return res.status(HttpStatusCode.BAD_REQUEST).json({ message: ErrorMessage.PRODUCT_NOT_FOUND });
   }
 
   if (count <= 0) {
-    return res.status(400).json({ message: "Count must be greater than zero" });
+    return res.status(HttpStatusCode.BAD_REQUEST).json({ message: ErrorMessage.PRODUCT_COUNT });
   }
 
   const cart = await CartModel.findOne({ orderBy: req.userId });
@@ -97,7 +97,7 @@ export const UpdateCartItem = AsyncWrapper(async (req: Request, res: Response) =
       item.price! = product.price * count;
       cart.cartTotal! = cart.cartTotal! - oldPrice! + item.price;
       await cart.save();
-      res.status(200).json({ message: "Cart updated", item });
+      res.status(HttpStatusCode.OK).json({ message: SuccessMessage.PRODUCT_UPDATED_SUCCESSFULLY});
     }
   }
 });

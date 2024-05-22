@@ -2,12 +2,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { GetUserCartItems } from "@/services/api";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { useQuery } from "@tanstack/react-query";
 import { ShoppingCartIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import CartProducts from "./CartProducts";
+import { GetUserCartItems } from "@/services/cart.api";
 
 export default function CartSheet() {
 

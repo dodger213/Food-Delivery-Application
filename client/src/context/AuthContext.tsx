@@ -3,6 +3,8 @@ import { VerifyUserApi } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { createContext, ReactNode, useContext } from "react";
 
+
+
 export type AuthContext = {
   isAuth: boolean;
 };
@@ -22,6 +24,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
 
   return <AuthContext.Provider value={{ isAuth: !isError }}>{children}</AuthContext.Provider>;
 };

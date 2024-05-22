@@ -1,6 +1,7 @@
 import {Schema, model} from "mongoose";
+import { CartModelType } from "../types.def";
 
-const cartSchema = new Schema(
+const cartSchema = new Schema<CartModelType>(
   {
     products: [
       {
@@ -22,5 +23,5 @@ const cartSchema = new Schema(
 );
 
 
-export const CartModel = model('Cart', cartSchema)
+export const CartModel = model<CartModelType>('Cart', cartSchema)
 

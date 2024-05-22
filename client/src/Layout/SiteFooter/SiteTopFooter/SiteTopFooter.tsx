@@ -19,7 +19,7 @@ const socialLinks = [
 export default function SiteTopFooter() {
   return (
     <footer>
-      <div className="space-y-4 sm:flex sm:flex-wrap sm:justify-between border-b mt-10 py-5">
+      <div className="mt-10 space-y-4 border-b py-5 sm:flex sm:flex-wrap sm:justify-between">
         <div className="space-y-4">
           <h1 className="font-bold text-2xl">Have a Questions?</h1>
           <h2 className="flex gap-2 items-center">

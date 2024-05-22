@@ -46,3 +46,16 @@ export type FoodModelType = {
   createdAt: Date;
   starRating: number
 };
+
+export type CartProduct = {
+  product: FoodModelType;
+  count: number;
+  price: number;
+}
+
+
+export type CartModelType = {
+  products: CartProduct[]
+  cartTotal: number
+  orderBy: UserModelType
+}

@@ -5,10 +5,10 @@ import {
     TooltipTrigger,
   } from "@/components/ui/tooltip";
   
-  type ToolTipProps = {
+  interface ToolTipProps {
     children: React.ReactNode;
     title: string;
-  };
+  }
   
   export default function CustomToolTip({ children, title }: ToolTipProps) {
     return (

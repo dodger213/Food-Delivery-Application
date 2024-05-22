@@ -7,7 +7,7 @@ exports.GenerateTokenAndCookie = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const GenerateTokenAndCookie = (userId, res) => {
     const token = jsonwebtoken_1.default.sign({ userId }, process.env.SECRET_KEY, {
-        expiresIn: "1h",
+        expiresIn: "2h",
     });
     res.cookie("foodZone", token, {
         maxAge: 24 * 60 * 60 * 1000,

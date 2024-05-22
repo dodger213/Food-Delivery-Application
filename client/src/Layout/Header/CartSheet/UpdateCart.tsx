@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
-import { RemoveFromCartApi, UpdateCartApi } from "@/services/api";
+import { RemoveFromCartApi, UpdateCartApi } from "@/services/cart.api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";

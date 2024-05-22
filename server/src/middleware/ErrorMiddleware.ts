@@ -1,5 +1,5 @@
 import { ErrorRequestHandler } from "express";
-import { CustomError, ErrorMessage } from "../utils";
+import { CustomError, ErrorMessage, HttpStatusCode } from "../utils";
 import { ZodError } from "zod";
 
 export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
@@ -14,10 +14,16 @@ export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
   }
 
 
-  if(error.name === 'jwt expired') {
-    return res.status(statusCode).json({message: error.message})
+  if(error.name === 'TokenExpiredError') {
+    res.cookie("foodZone", "", {
+      expires: new Date(0),
+      httpOnly: true,
+      secure: false,
+      maxAge: 0
+    })
+    return res.status(HttpStatusCode.UNAUTHORIZED).json({message: error.message})
   }
 
-  console.log(error.message)
+
   return res.status(statusCode).json({ message: ErrorMessage.DEFAULT_ERROR_MESSAGE });
 };

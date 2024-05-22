@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import starRating from "@/assets/rating_starts.png";
-import { AddToCart, FoodType } from "@/services/api";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAuthContext } from "@/context/AuthContext";
+import { AddToCart } from "@/services/cart.api";
+import { ProductProps } from "@/services/interface";
 
 interface SiteProductCardProps {
-  item: FoodType
+  item: ProductProps
 }
 
 export default function SiteProductCard({item}: SiteProductCardProps) {
