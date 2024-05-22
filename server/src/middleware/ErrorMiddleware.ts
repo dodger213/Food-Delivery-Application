@@ -13,6 +13,11 @@ export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
     return res.status(statusCode).json({ message: error.message });
   }
 
+
+  if(error.name === 'jwt expired') {
+    return res.status(statusCode).json({message: error.message})
+  }
+
   console.log(error.message)
   return res.status(statusCode).json({ message: ErrorMessage.DEFAULT_ERROR_MESSAGE });
 };

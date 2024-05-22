@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query"
 export default function SiteTopNonVeg() {
 
   const {data: products} = useQuery({
-    queryKey: ['recent-added'],
+    queryKey: ['top-non-veg'],
     queryFn: GetNonVegFoodApi
   })
 

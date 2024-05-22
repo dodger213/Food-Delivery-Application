@@ -12,6 +12,9 @@ const ErrorMiddleware = (error, req, res, next) => {
     if (error instanceof utils_1.CustomError) {
         return res.status(statusCode).json({ message: error.message });
     }
+    if (error.name === 'jwt expired') {
+        return res.status(statusCode).json({ message: error.message });
+    }
     console.log(error.message);
     return res.status(statusCode).json({ message: utils_1.ErrorMessage.DEFAULT_ERROR_MESSAGE });
 };

@@ -13,6 +13,7 @@ exports.GetRecentlyAdded = exports.GetNonVegFoods = exports.GetVegFoods = export
 const utils_1 = require("../utils");
 const models_1 = require("../models");
 const cloudinary_1 = require("cloudinary");
+/*  Create product  */
 exports.CreateProduct = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, description, price, category, discount, ingredients, starRating } = req.body;
     const findFood = yield models_1.FoodModel.findOne({ name });
@@ -24,6 +25,7 @@ exports.CreateProduct = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0
     yield newFood.save();
     res.status(utils_1.HttpStatusCode.OK).json({ message: `${newFood.name} added Successfully` });
 }));
+/*  all product list */
 exports.GetAllProducts = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const foods = yield models_1.FoodModel.find({});
     if (foods.length === 0) {
@@ -31,19 +33,23 @@ exports.GetAllProducts = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 
     }
     return res.status(utils_1.HttpStatusCode.OK).json(foods);
 }));
+/*  search product  */
 exports.SearchFood = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const searchRegex = new RegExp(req.params.searchTerm, 'i');
     const foodlist = yield models_1.FoodModel.find({ name: { $regex: searchRegex } });
     return res.status(utils_1.HttpStatusCode.OK).json(foodlist);
 }));
+/*  veg food product  */
 exports.GetVegFoods = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const vegfoods = yield models_1.FoodModel.find({ vegetarian: true }).sort({ createdAt: -1 }).limit(8);
+    const vegfoods = yield models_1.FoodModel.find({ vegetarian: true }).limit(8);
     return res.status(utils_1.HttpStatusCode.OK).json(vegfoods);
 }));
+/*  non veg product  */
 exports.GetNonVegFoods = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const Nonvegfoods = yield models_1.FoodModel.find({ vegetarian: false }).sort({ createdAt: -1 }).limit(8);
+    const Nonvegfoods = yield models_1.FoodModel.find({ vegetarian: false }).limit(8);
     return res.status(utils_1.HttpStatusCode.OK).json(Nonvegfoods);
 }));
+/*  recently added  */
 exports.GetRecentlyAdded = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const foods = yield models_1.FoodModel.find({}).sort({ createdAt: -1 }).limit(8);
     return res.status(utils_1.HttpStatusCode.OK).json(foods);

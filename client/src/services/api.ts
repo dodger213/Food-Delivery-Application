@@ -179,3 +179,39 @@ export const AddToCart = async (productId: string) : Promise<ReturnType> => {
 
   return data;
 };
+
+export const UpdateCartApi = async (productId: string, count: number) => {
+  const response = await fetch(`${base_url}/cart/update-cart/${productId}`, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({count}),
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+                                                        
+  return data;
+};
+
+
+export const RemoveFromCartApi = async (productId: string) => {
+  const response = await fetch(`${base_url}/cart/remove-cart/${productId}`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+                                                        
+  return data;
+};

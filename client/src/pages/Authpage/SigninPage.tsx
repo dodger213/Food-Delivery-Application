@@ -8,7 +8,7 @@ export default function SigninPage() {
   return (
     <>
       <SEO title="FoodZone | Sign In" description={"SignIn page for the FoodZone"} />
-      <section className="h-screen m-auto flex justify-center items-center">
+      <section className="m-auto flex h-screen items-center justify-center">
       <AuthCard authTitle={'Sign In'}>
         <SigninForm />
         <div className="flex justify-between text-sm">

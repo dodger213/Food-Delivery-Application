@@ -6,7 +6,7 @@ import { GetVegFoodApi } from "@/services/api";
 export default function SiteTopVeg() {
 
   const {data: products} = useQuery({
-    queryKey: ['recent-added'],
+    queryKey: ['top-veg'],
     queryFn: GetVegFoodApi
   })
 

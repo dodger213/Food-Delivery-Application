@@ -13,7 +13,7 @@ export default function SiteMenu({setSelectedMenu}: SiteMenuProps) {
       <h1 className="text-center text-4xl font-extrabold">Select from our best menu's</h1>
       <div className="m-5 flex items-center justify-between gap-8 pt-5">
         {menulist.map((item) => (
-          <div key={item.name} onClick={() => setSelectedMenu((prev) => (prev === item.name ? 'All':  item.name))}>
+          <div key={item.name} onClick={() =>  setSelectedMenu((prev) => (prev === item.name ? "All" : item.name))}>
             <img
               src={item.image}
               alt={item.name}

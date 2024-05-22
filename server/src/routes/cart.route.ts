@@ -7,3 +7,5 @@ export const CartRoute = Router()
 
 CartRoute.get('/user-cart', AuthMiddleware, cart.GetAllCartItems)
 CartRoute.post('/add-cart', AuthMiddleware, cart.CreateUserCart)
+CartRoute.delete('/remove-cart/:productId', AuthMiddleware, cart.RemoveFromCart)
+CartRoute.put('/update-cart/:productId', AuthMiddleware, cart.UpdateCartItem)

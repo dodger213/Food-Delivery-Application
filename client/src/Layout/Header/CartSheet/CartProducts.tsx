@@ -23,7 +23,7 @@ export default function CartProducts() {
             </div>
           </div>
           <div className="py-3">
-            <UpdateCart productId={product._id} />
+            <UpdateCart productId={product.product._id} count={product.count}/>
           </div>
         </div>
       ))}

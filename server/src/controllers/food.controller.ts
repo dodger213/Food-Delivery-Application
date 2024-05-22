@@ -4,7 +4,7 @@ import { FoodModel } from '../models'
 import {v2 as cloudinary} from 'cloudinary'
 
 
-
+/*  Create product  */
 
 export const CreateProduct = AsyncWrapper(async(req:Request, res:Response) => {
     const {name, description, price, category, discount, ingredients, starRating} = req.body
@@ -23,6 +23,9 @@ export const CreateProduct = AsyncWrapper(async(req:Request, res:Response) => {
 
 })
 
+/*  all product list */
+
+
 export const GetAllProducts = AsyncWrapper(async(req:Request, res:Response) => {
     const foods = await FoodModel.find({})
 
@@ -33,22 +36,32 @@ export const GetAllProducts = AsyncWrapper(async(req:Request, res:Response) => {
     return res.status(HttpStatusCode.OK).json(foods)
 })
 
+
+/*  search product  */
+
 export const SearchFood = AsyncWrapper(async(req:Request, res:Response) => {
     const searchRegex = new RegExp(req.params.searchTerm, 'i')
     const foodlist = await FoodModel.find({name: {$regex: searchRegex}})
     return res.status(HttpStatusCode.OK).json(foodlist)
 })
 
+/*  veg food product  */
+
+
 export const GetVegFoods = AsyncWrapper(async(req:Request, res:Response) => {
-    const vegfoods = await FoodModel.find({vegetarian: true}).sort({createdAt: -1}).limit(8)
+    const vegfoods = await FoodModel.find({vegetarian: true}).limit(8)
     return res.status(HttpStatusCode.OK).json(vegfoods)
 })
 
+/*  non veg product  */
+
 export const GetNonVegFoods = AsyncWrapper(async(req:Request, res:Response) => {
-    const Nonvegfoods = await FoodModel.find({vegetarian: false}).sort({createdAt: -1}).limit(8)
+    const Nonvegfoods = await FoodModel.find({vegetarian: false}).limit(8)
     return res.status(HttpStatusCode.OK).json(Nonvegfoods)
 })
 
+
+/*  recently added  */
 
 export const GetRecentlyAdded = AsyncWrapper(async(req:Request, res:Response) => {
     const foods = await FoodModel.find({}).sort({createdAt: -1}).limit(8)

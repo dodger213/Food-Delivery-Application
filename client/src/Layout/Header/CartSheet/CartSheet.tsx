@@ -32,7 +32,7 @@ export default function CartSheet() {
         <SheetTitle>Cart {data && (`${ItemCount}`)}</SheetTitle>
         <Separator />
       </SheetHeader>
-      {data ? ItemCount > 0 && (
+      {data && ItemCount > 0 ? (
         <>
            <CartProducts />
            <div className="space-y-4 pr-6">

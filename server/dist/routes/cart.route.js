@@ -30,3 +30,5 @@ const middleware_1 = require("../middleware");
 exports.CartRoute = (0, express_1.Router)();
 exports.CartRoute.get('/user-cart', middleware_1.AuthMiddleware, cart.GetAllCartItems);
 exports.CartRoute.post('/add-cart', middleware_1.AuthMiddleware, cart.CreateUserCart);
+exports.CartRoute.delete('/remove-cart/:productId', middleware_1.AuthMiddleware, cart.RemoveFromCart);
+exports.CartRoute.put('/update-cart/:productId', middleware_1.AuthMiddleware, cart.UpdateCartItem);

@@ -16,12 +16,14 @@ export default function Cartpage() {
     queryFn: GetUserCartItems,
   });
 
+ 
+
   return (
     <section className="mt-10 flex h-[80vh] w-full border">
       <div className="flex-1 px-10">
         <div className="flex items-center justify-between border-b py-5">
           <span className="text-2xl font-bold">Shopping Cart</span>
-          <span>10 Items</span>
+          <span>Cart Item {data?.products.length}</span>
         </div>
         <ScrollArea className="h-[85%]">
           <div className="grid grid-cols-4 gap-x-56 border-b p-5">
@@ -40,13 +42,15 @@ export default function Cartpage() {
                 </div>
               </div>
               <div>
-                <UpdateCart productId={product._id}/>
+              <div>
+                <UpdateCart productId={product.product._id} count={product.count}/>
+              </div>
               </div>
               <div>
-                <span>$ {product.product.price}</span>
+                <span className="flex w-10 gap-2">$ {product.product.price}</span>
               </div>
               <div>
-                <span>$ {data.cartTotal}</span>
+                <span className="flex w-10 gap-2">$ {data.cartTotal}</span>
               </div>
             </div>
           ))}
@@ -57,8 +61,8 @@ export default function Cartpage() {
         <div className="space-y-5 border-b pb-5">
           <h1 className="text-xl font-bold">Order Summary</h1>
           <div className="mx-10 flex justify-between">
-            <h1>10 Items</h1>
-            <span>Cart Total</span>
+            <h1>Cart Total</h1>
+            <span>$ {data?.cartTotal}</span>
           </div>
         </div>
 
