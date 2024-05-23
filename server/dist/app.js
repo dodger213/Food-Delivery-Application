@@ -28,5 +28,6 @@ exports.app.use('/api/auth', routes_1.AuthRoute);
 exports.app.use('/api/food', routes_1.FoodRoute);
 exports.app.use('/api/cart', routes_1.CartRoute);
 exports.app.use('/api/admin', routes_1.AdminRoute);
+exports.app.use('/api/payment', routes_1.PaymentRoute);
 exports.app.use(middleware_1.RouteNotFoundMiddleware);
 exports.app.use(middleware_1.ErrorMiddleware);

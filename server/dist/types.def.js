@@ -9,4 +9,5 @@ const EnvVariables = zod_1.z.object({
     CLOUDINARY_CLOUD_NAME: zod_1.z.string().min(1),
     CLOUDINARY_API_KEY: zod_1.z.string().min(1),
     CLOUDINARY_API_SECRET: zod_1.z.string().min(1),
+    STRIPE_API_KEY: zod_1.z.string().min(1),
 });
