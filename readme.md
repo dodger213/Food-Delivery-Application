@@ -8,8 +8,8 @@
 
 
 ## 🔗 Links
-- Live: 
-- Code: 
+- Live: https://foodzonenewapp.netlify.app/
+- Code: https://github.com/ReynoldArun09/MERN-Food-Delivery-App
 
 ## Table of Contents
 
