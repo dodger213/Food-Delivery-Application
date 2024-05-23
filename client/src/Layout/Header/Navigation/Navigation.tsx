@@ -11,10 +11,7 @@ const NavLinks = [
   {
     name: "Menu",
     href: "/menu"
-  },
-  {
-    name: "Contact",
-  },
+  }
 ];
 
 export default function Navigation() {

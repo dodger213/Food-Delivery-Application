@@ -48,9 +48,6 @@ export default function UserProfile() {
                 <DropdownMenuItem>Dashboard</DropdownMenuItem>
               </Link>
             )}
-            <DropdownMenuItem>My Account</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => LogoutUser()} disabled={isPending}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
