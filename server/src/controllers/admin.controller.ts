@@ -52,3 +52,34 @@ export const DeleteProduct = AsyncWrapper(async (req: Request, res: Response) =>
   await FoodModel.findByIdAndDelete(productId);
   return res.status(200).json({ message: "Product deleted" });
 });
+
+
+export const DeleteUser = AsyncWrapper(async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  
+  const user = await UserModel.findByIdAndDelete(userId);
+  return res.status(200).json({ message: "Product deleted" });
+});
+
+
+export const BlockUnBlockUser = AsyncWrapper(async (req: Request, res: Response) => {
+  const { userId } = req.params;
+  
+  const user = await UserModel.findById(userId);
+
+  if(!user) {
+    return res.status(400).json({ message: ErrorMessage.USER_NOT_FOUND });
+  }
+
+  if (user.blocked === true) {
+    await UserModel.findByIdAndUpdate(userId, {
+      blocked: false,
+    });
+    return res.status(200).json({ message: "User Blocked" });
+  } else {
+    await UserModel.findByIdAndUpdate(userId, {
+      blocked: true,
+    });
+    return res.status(200).json({ message: "User UnBlocked" });
+  }
+});

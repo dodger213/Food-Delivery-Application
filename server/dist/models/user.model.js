@@ -40,6 +40,10 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user'
+    },
+    blocked: {
+        type: Boolean,
+        default: false
     }
 });
 userSchema.pre('save', function (next) {

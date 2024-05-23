@@ -31,6 +31,7 @@ export type UserModelType = {
   lastname: string;
   mobile: string;
   role: string;
+  blocked: boolean
 };
 
 export type FoodModelType = {

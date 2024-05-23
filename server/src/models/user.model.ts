@@ -31,6 +31,10 @@ const userSchema = new Schema<IUserModel>({
         type: String,
         enum: ['user', 'admin'],
         default: 'user'
+      },
+      blocked: {
+        type: Boolean,
+        default: false
       }
 })
 

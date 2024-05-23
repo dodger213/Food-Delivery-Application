@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteProduct = exports.EnableDisableProduct = exports.VerifyAdmin = exports.GetAllProductsList = exports.GetAllCustomersList = void 0;
+exports.BlockUnBlockUser = exports.DeleteUser = exports.DeleteProduct = exports.EnableDisableProduct = exports.VerifyAdmin = exports.GetAllProductsList = exports.GetAllCustomersList = void 0;
 const models_1 = require("../models");
 const utils_1 = require("../utils");
 const cloudinary_1 = require("cloudinary");
@@ -56,4 +56,28 @@ exports.DeleteProduct = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0
     }
     yield models_1.FoodModel.findByIdAndDelete(productId);
     return res.status(200).json({ message: "Product deleted" });
+}));
+exports.DeleteUser = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    const user = yield models_1.UserModel.findByIdAndDelete(userId);
+    return res.status(200).json({ message: "Product deleted" });
+}));
+exports.BlockUnBlockUser = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { userId } = req.params;
+    const user = yield models_1.UserModel.findById(userId);
+    if (!user) {
+        return res.status(400).json({ message: utils_1.ErrorMessage.USER_NOT_FOUND });
+    }
+    if (user.blocked === true) {
+        yield models_1.UserModel.findByIdAndUpdate(userId, {
+            blocked: false,
+        });
+        return res.status(200).json({ message: "User Blocked" });
+    }
+    else {
+        yield models_1.UserModel.findByIdAndUpdate(userId, {
+            blocked: true,
+        });
+        return res.status(200).json({ message: "User UnBlocked" });
+    }
 }));

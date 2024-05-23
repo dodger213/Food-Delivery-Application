@@ -65,4 +65,32 @@ export const GetAllProductList = async () => {
     return data;
   }
 
+  export const BlockUnBlockUser = async(id:string) => {
+    const response = await fetch(`${base_url}/admin/block-unblock-user/${id}`, {
+      method: 'PUT'
+    });
+  
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  
+    return data;
+  }
+
+
+  export const Deleteuser = async(id:string) => {
+    const response = await fetch(`${base_url}/admin/user-delete/${id}`, {
+      method: 'Delete'
+    });
+  
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  
+    return data;
+  }
+
+
 

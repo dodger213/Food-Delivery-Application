@@ -32,4 +32,6 @@ exports.AdminRoute.get('/get-users', admin.GetAllCustomersList);
 exports.AdminRoute.get('/get-products', admin.GetAllProductsList);
 exports.AdminRoute.put('/enable-disable/:productId', admin.EnableDisableProduct);
 exports.AdminRoute.delete('/delete/:productId', admin.DeleteProduct);
+exports.AdminRoute.delete('/user-delete/:userId', admin.DeleteUser);
+exports.AdminRoute.put('/block-unblock-user/:userId', admin.BlockUnBlockUser);
 exports.AdminRoute.get('/verifyAdminApi', middleware_1.AuthMiddleware, middleware_1.AdminMiddleware, admin.VerifyAdmin);
