@@ -27,6 +27,7 @@ export default function SignupForm() {
     onSuccess: (data) => {
       toast.success(data.message)
       queryClient.invalidateQueries({ queryKey: ["authuser"]});
+      queryClient.invalidateQueries({ queryKey: ["authadmin"] });
       navigate('/')
     },
     onError: (error) => {
