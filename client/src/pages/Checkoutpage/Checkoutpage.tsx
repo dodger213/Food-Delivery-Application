@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/Forms/CheckoutForm";
-import { CartItemProps } from "@/services/interface";
+import { base_url, CartItemProps } from "@/services/interface";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Checkoutpage() {
@@ -11,7 +11,7 @@ export default function Checkoutpage() {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/payment/create-payment-intent", {
+    fetch(`${base_url}/payment/create-payment-intent`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
