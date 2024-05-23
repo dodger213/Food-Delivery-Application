@@ -3,7 +3,7 @@ import { base_url, CartItemProps, MessageProps } from "./interface";
 
 
 
-export const GetUserCartItems = async (): Promise<CartItemProps> => {
+export const GetUserCartItems = async (): Promise<CartItemProps | null> => {
   const response = await fetch(`${base_url}/cart/user-cart`, {
     credentials: "include",
   });
@@ -11,7 +11,7 @@ export const GetUserCartItems = async (): Promise<CartItemProps> => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message);
+    return null
   }
 
   return data;
