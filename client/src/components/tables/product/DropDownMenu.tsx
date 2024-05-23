@@ -27,8 +27,6 @@ export default function DropDownMenu({ id }: DropProps) {
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => DeleteProduct.mutate(id)}>Delete Product</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Edit Product</DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => EnableDisableProduct.mutate(id)}>Disable Product</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -8,14 +8,12 @@ import Menupage from "./pages/Menupage/Menupage";
 import Cartpage from "./pages/Cartpage/Cartpage";
 import Checkoutpage from "./pages/Checkoutpage/Checkoutpage";
 import AdminLayout from "./Layout/AdminLayout";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminCustomerList from "./pages/Admin/AdminCustomerList";
 import AdminProductList from "./pages/Admin/AdminProductList";
 
 
 export default function App() {
   const { isAuth, isAdmin } = useAuthContext();
-  
 
   return (
     <>
@@ -28,11 +26,17 @@ export default function App() {
           <Route path="/checkout" element={isAuth ? <Checkoutpage /> : <Navigate to="/" />} />
           <Route path="/menu" element={<Menupage />} />
         </Route>
-        <Route path="/admindashboard" element={<AdminLayout />}>
-          <Route index element={isAuth && isAdmin ? <AdminDashboard /> : <Navigate to="/Sign-in" />} />
-          <Route path="/admindashboard/products" element={isAuth && isAdmin? <AdminProductList /> : <Navigate to="/Sign-in" />} />
-          <Route path="/admindashboard/customers" element={isAuth && isAdmin ? <AdminCustomerList /> : <Navigate to="/Sign-in" />} />
+        <Route element={isAuth ? <AdminLayout /> : <Navigate to="/Sign-in" />}>
+          <Route
+            path="/dashboard/products"
+            element={isAuth && isAdmin ? <AdminProductList /> : <Navigate to="/Sign-in" />}
+          />
+          <Route
+            path="/dashboard/customers"
+            element={isAuth && isAdmin ? <AdminCustomerList /> : <Navigate to="/Sign-in" />}
+          />
         </Route>
+        <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
     </>
   );

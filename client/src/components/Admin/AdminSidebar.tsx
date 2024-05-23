@@ -1,21 +1,16 @@
-import { Home, Package, Users, CookieIcon } from "lucide-react";
+import { Package, Users, CookieIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 
 const SidebarLinks = [
   {
-    name: 'Dashboard',
-    href: '/admindashboard',
-    icon: <Home className="size-4" />
-  },
-  {
     name: 'Products',
-    href: '/admindashboard/products',
+    href: '/dashboard/products',
     icon: <Package className="size-4" />
   },
   {
     name: 'Customers',
-    href: '/admindashboard/customers',
+    href: '/dashboard/customers',
     icon: <Users className="size-4" />
   }
 ]

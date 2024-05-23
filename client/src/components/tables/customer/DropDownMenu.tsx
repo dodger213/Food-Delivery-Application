@@ -24,8 +24,6 @@ export default function DropDownMenu({id}: DropProps) {
       <DropdownMenuItem onClick={() => blockunblock.mutate(id)}>Block User</DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem onClick={() => deleteUser.mutate(id)}>Delete User</DropdownMenuItem>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem>Edit User</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
   )
