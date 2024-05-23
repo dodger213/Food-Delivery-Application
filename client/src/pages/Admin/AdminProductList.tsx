@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function AdminProductList() {
 
   const { data } = useQuery({
-    queryKey: ["all-foods"],
+    queryKey: ["all-products"],
     queryFn: GetAllProductList
   });
 

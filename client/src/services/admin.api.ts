@@ -39,3 +39,30 @@ export const GetAllProductList = async () => {
   
     return data;
   }
+
+  export const EnableDisable = async(id:string) => {
+    const response = await fetch(`${base_url}/admin/enable-disable/${id}`, {
+      method: 'PUT'
+    });
+  
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  
+    return data;
+  }
+  export const Deleteproduct = async(id:string) => {
+    const response = await fetch(`${base_url}/admin/delete/${id}`, {
+      method: 'Delete'
+    });
+  
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+  
+    return data;
+  }
+
+

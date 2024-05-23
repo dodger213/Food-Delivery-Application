@@ -30,4 +30,6 @@ const middleware_1 = require("../middleware");
 exports.AdminRoute = (0, express_1.Router)();
 exports.AdminRoute.get('/get-users', admin.GetAllCustomersList);
 exports.AdminRoute.get('/get-products', admin.GetAllProductsList);
+exports.AdminRoute.put('/enable-disable/:productId', admin.EnableDisableProduct);
+exports.AdminRoute.delete('/delete/:productId', admin.DeleteProduct);
 exports.AdminRoute.get('/verifyAdminApi', middleware_1.AuthMiddleware, middleware_1.AdminMiddleware, admin.VerifyAdmin);

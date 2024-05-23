@@ -29,9 +29,9 @@ export default function App() {
           <Route path="/menu" element={<Menupage />} />
         </Route>
         <Route path="/admindashboard" element={<AdminLayout />}>
-          <Route index element={isAuth && isAdmin ? <AdminDashboard /> : <Navigate to="/login" />} />
-          <Route path="/admindashboard/products" element={isAuth && isAdmin? <AdminProductList /> : <Navigate to="/login" />} />
-          <Route path="/admindashboard/customers" element={isAuth && isAdmin ? <AdminCustomerList /> : <Navigate to="/login" />} />
+          <Route index element={isAuth && isAdmin ? <AdminDashboard /> : <Navigate to="/Sign-in" />} />
+          <Route path="/admindashboard/products" element={isAuth && isAdmin? <AdminProductList /> : <Navigate to="/Sign-in" />} />
+          <Route path="/admindashboard/customers" element={isAuth && isAdmin ? <AdminCustomerList /> : <Navigate to="/Sign-in" />} />
         </Route>
       </Routes>
     </>

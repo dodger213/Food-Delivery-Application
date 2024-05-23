@@ -1,14 +1,7 @@
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
 import { ColumnDef } from "@tanstack/react-table";
-import { Ellipsis } from "lucide-react";
+import DropDownMenu from "./DropDownMenu";
+
+
 
 export type Product = {
   name: string;
@@ -19,7 +12,7 @@ export type Product = {
 };
 
 export type ProductType = {
-    _id?: string;
+    _id: string;
     name: string;
     description: string;
     price: number;
@@ -28,6 +21,9 @@ export type ProductType = {
     vegetarian?: string;
     available: boolean
   };
+
+
+
 
 export const columns: ColumnDef<ProductType>[] = [
   {
@@ -65,24 +61,11 @@ export const columns: ColumnDef<ProductType>[] = [
     id: "actions",
     enableHiding: false,
     header: "Actions",
-    cell: () => {
+    cell: ({row}) => {
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="size-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <Ellipsis />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>Delete Product</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit Product</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Disable Product</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+       <DropDownMenu id={row.original._id} />
       );
     },
   },
 ];
+
