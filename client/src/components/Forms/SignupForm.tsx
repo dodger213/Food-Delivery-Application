@@ -25,7 +25,7 @@ export default function SignupForm() {
     mutationKey: ['signup'],
     mutationFn: SignupUserApi,
     onSuccess: (data) => {
-      toast.success(data?.message)
+      toast.success(data.message)
       queryClient.invalidateQueries({ queryKey: ["authuser"]});
       navigate('/')
     },

@@ -6,7 +6,7 @@ import 'dotenv/config'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
 import morgan from 'morgan'
 
-import { AuthRoute, CartRoute, FoodRoute } from './routes'
+import { AdminRoute, AuthRoute, CartRoute, FoodRoute } from './routes'
 import { ErrorMiddleware, RouteNotFoundMiddleware } from './middleware'
 
 
@@ -29,6 +29,7 @@ app.disable('x-powered-by')
 app.use('/api/auth', AuthRoute)
 app.use('/api/food', FoodRoute)
 app.use('/api/cart', CartRoute)
+app.use('/api/admin', AdminRoute)
 
 app.use(RouteNotFoundMiddleware)
 app.use(ErrorMiddleware)

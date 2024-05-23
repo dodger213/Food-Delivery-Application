@@ -46,7 +46,7 @@ exports.SignInUser = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, v
         throw new utils_1.CustomError(utils_1.ErrorMessage.INVALID_PASSWORD, utils_1.HttpStatusCode.BAD_REQUEST);
     }
     (0, utils_1.GenerateTokenAndCookie)(findUser._id, res);
-    res.status(utils_1.HttpStatusCode.OK).json({ message: utils_1.SuccessMessage.USER_LOGIN_SUCCESS });
+    res.status(utils_1.HttpStatusCode.OK).json({ message: utils_1.SuccessMessage.USER_LOGIN_SUCCESS, role: findUser.role });
 }));
 exports.SignOutUser = (0, utils_1.AsyncWrapper)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.cookie("foodZone", "", {

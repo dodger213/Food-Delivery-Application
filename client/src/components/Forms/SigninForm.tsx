@@ -24,13 +24,20 @@ export default function SigninForm() {
     mutationFn: SigninUserApi,
     onSuccess: (data) => {
       toast.success(data?.message)
-     
+      if (data.role === "admin") {
+        const store = {
+          value: true,
+        };
+        localStorage.setItem("checkwho", JSON.stringify(store));
+      }
     },
     onError: (error) => {
       toast.error(error.message)
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["authuser"] });
+      queryClient.invalidateQueries({ queryKey: ["cart-items"] });
+      queryClient.invalidateQueries({ queryKey: ["authadmin"] });
       navigate('/')
     }
   })

@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthMiddleware = void 0;
+exports.AdminMiddleware = exports.AuthMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const utils_1 = require("../utils");
+const models_1 = require("../models");
 exports.AuthMiddleware = (0, utils_1.AsyncWrapper)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.cookies['foodZone'];
     if (!token) {
@@ -27,3 +28,16 @@ exports.AuthMiddleware = (0, utils_1.AsyncWrapper)((req, res, next) => __awaiter
     req.userId = decodeToken.userId;
     next();
 }));
+const AdminMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const findAdmin = yield models_1.UserModel.findById(req.userId);
+        if ((findAdmin === null || findAdmin === void 0 ? void 0 : findAdmin.role) !== 'admin') {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+        next();
+    }
+    catch (error) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+});
+exports.AdminMiddleware = AdminMiddleware;

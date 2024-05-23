@@ -34,3 +34,8 @@ export interface ProductProps {
   export interface MessageProps {
       message: string
   }
+
+  export interface SignInResponse {
+    message: string;
+    role: string
+  }

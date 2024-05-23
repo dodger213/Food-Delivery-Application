@@ -43,7 +43,7 @@ export const SignInUser = AsyncWrapper(async (req: Request, res: Response) => {
   }
 
   GenerateTokenAndCookie(findUser._id, res);
-  res.status(HttpStatusCode.OK).json({ message: SuccessMessage.USER_LOGIN_SUCCESS });
+  res.status(HttpStatusCode.OK).json({ message: SuccessMessage.USER_LOGIN_SUCCESS, role: findUser.role });
 });
 
 export const SignOutUser = AsyncWrapper(async (req: Request, res: Response) => {

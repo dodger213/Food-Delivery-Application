@@ -10,8 +10,8 @@ import { toast } from "sonner"
 
 export default function UserProfile() {
   const queryClient = useQueryClient()
-  const {isAuth} = useAuthContext()
-  const isAdminLogged = false
+  const {isAuth, isAdmin} = useAuthContext()
+  
 
   
   const {mutate, isPending} = useMutation({
@@ -21,6 +21,7 @@ export default function UserProfile() {
       toast.success(data?.message)
       queryClient.invalidateQueries({ queryKey: ["authuser"] });
       queryClient.invalidateQueries({ queryKey: ["cart-items"] });
+      localStorage.removeItem('checkwho')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -42,7 +43,7 @@ export default function UserProfile() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {isAdminLogged && (
+            {isAdmin && (
               <Link to="/admindashboard">
                 <DropdownMenuItem>Dashboard</DropdownMenuItem>
               </Link>

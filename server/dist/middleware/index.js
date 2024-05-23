@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RouteNotFoundMiddleware = exports.AuthMiddleware = exports.RateLimiterMiddleware = exports.ValidationMiddleware = exports.ErrorMiddleware = void 0;
+exports.RouteNotFoundMiddleware = exports.AdminMiddleware = exports.AuthMiddleware = exports.RateLimiterMiddleware = exports.ValidationMiddleware = exports.ErrorMiddleware = void 0;
 var ErrorMiddleware_1 = require("./ErrorMiddleware");
 Object.defineProperty(exports, "ErrorMiddleware", { enumerable: true, get: function () { return ErrorMiddleware_1.ErrorMiddleware; } });
 var ValidationMiddleware_1 = require("./ValidationMiddleware");
@@ -9,5 +9,6 @@ var RateLimiterMiddleware_1 = require("./RateLimiterMiddleware");
 Object.defineProperty(exports, "RateLimiterMiddleware", { enumerable: true, get: function () { return RateLimiterMiddleware_1.RateLimiterMiddleware; } });
 var AuthMiddleware_1 = require("./AuthMiddleware");
 Object.defineProperty(exports, "AuthMiddleware", { enumerable: true, get: function () { return AuthMiddleware_1.AuthMiddleware; } });
+Object.defineProperty(exports, "AdminMiddleware", { enumerable: true, get: function () { return AuthMiddleware_1.AdminMiddleware; } });
 var RouteNotFoundMiddleware_1 = require("./RouteNotFoundMiddleware");
 Object.defineProperty(exports, "RouteNotFoundMiddleware", { enumerable: true, get: function () { return RouteNotFoundMiddleware_1.RouteNotFoundMiddleware; } });
