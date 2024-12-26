@@ -1,4 +1,4 @@
-import express, {Application} from 'express'
+import express, { Application } from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
@@ -8,7 +8,6 @@ import morgan from 'morgan'
 
 import { AdminRoute, AuthRoute, CartRoute, FoodRoute, PaymentRoute } from './routes'
 import { ErrorMiddleware, RouteNotFoundMiddleware } from './middleware'
-
 
 export const app: Application = express()
 
@@ -24,8 +23,6 @@ app.use(helmet())
 app.use(ExpressMongoSanitize())
 app.disable('x-powered-by')
 
-
- 
 app.use('/api/auth', AuthRoute)
 app.use('/api/food', FoodRoute)
 app.use('/api/cart', CartRoute)

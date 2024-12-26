@@ -3,7 +3,6 @@ import path from 'path'
 
 const { combine, colorize, timestamp, align, printf, json } = winston.format;
 
-
 winston.addColors({
   error: "red",
   warn: "yellow",
