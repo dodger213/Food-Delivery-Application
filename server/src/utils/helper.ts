@@ -8,7 +8,6 @@ export enum HttpStatusCode {
   FORBIDDEN = 403,
 }
 
-
 export const SuccessMessage = {
   USER_REGISTER_SUCCESS: 'Your Account has been Created',
   USER_LOGIN_SUCCESS: "Your have Logged In",
