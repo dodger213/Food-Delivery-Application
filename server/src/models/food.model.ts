@@ -1,7 +1,6 @@
 import {model, Schema} from 'mongoose'
 import { FoodModelType } from '../types.def'
 
-
 const foodSchema = new Schema<FoodModelType>({
     name: {
         type: String,

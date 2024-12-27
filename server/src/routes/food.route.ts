@@ -1,4 +1,4 @@
-import {Router} from 'express'
+import { Router } from 'express'
 import * as food from '../controllers/food.controller'
 import multer from 'multer'
 
