@@ -14,14 +14,14 @@ export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
   }
 
 
-  if(error.name === 'TokenExpiredError') {
+  if (error.name === 'TokenExpiredError') {
     res.cookie("foodZone", "", {
       expires: new Date(0),
       httpOnly: true,
       secure: false,
       maxAge: 0
     })
-    return res.status(HttpStatusCode.UNAUTHORIZED).json({message: error.message})
+    return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: error.message })
   }
 
 
