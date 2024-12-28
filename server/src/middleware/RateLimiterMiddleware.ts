@@ -1,7 +1,6 @@
 import { rateLimit, ValueDeterminingMiddleware } from 'express-rate-limit'
 
-
-export const RateLimiterMiddleware = (message:string, limits:number | ValueDeterminingMiddleware<number> | undefined) => {
+export const RateLimiterMiddleware = (message: string, limits: number | ValueDeterminingMiddleware<number> | undefined) => {
     return rateLimit({
         windowMs: 5 * 60 * 1000,
         limit: limits,
