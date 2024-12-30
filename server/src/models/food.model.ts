@@ -1,4 +1,4 @@
-import {model, Schema} from 'mongoose'
+import { model, Schema } from 'mongoose'
 import { FoodModelType } from '../types.def'
 
 const foodSchema = new Schema<FoodModelType>({
@@ -20,7 +20,7 @@ const foodSchema = new Schema<FoodModelType>({
     },
     image: {
         type: String
-        
+
     },
     starRating: {
         type: Number,
@@ -34,7 +34,7 @@ const foodSchema = new Schema<FoodModelType>({
     vegetarian: {
         type: Boolean,
         default: false
-        
+
     },
     discount: {
         type: Number,
