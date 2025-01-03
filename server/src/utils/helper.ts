@@ -11,16 +11,16 @@ export enum HttpStatusCode {
 export const SuccessMessage = {
   USER_REGISTER_SUCCESS: 'Your Account has been Created',
   USER_LOGIN_SUCCESS: "Your have Logged In",
-  USER_LOGOUT_SUCCESS : 'You have been Successfully logged out',
+  USER_LOGOUT_SUCCESS: 'You have been Successfully logged out',
   PRODUCT_ADDED_SUCCESSFULLY: 'Product added successfully',
   PRODUCT_UPDATED_SUCCESSFULLY: 'Product updated successfully',
   PRODUCT_DELETED_SUCCESSFULLY: 'Product deleted successfully',
-  
+
 }
 
-export const ErrorMessage = { 
-  DEFAULT_ERROR_MESSAGE : "Something went wrong",
-  ROUTE_NOT_FOUND : "Route not found",
+export const ErrorMessage = {
+  DEFAULT_ERROR_MESSAGE: "Something went wrong",
+  ROUTE_NOT_FOUND: "Route not found",
   USER_ALREADY_EXIST: "Email already exists",
   USER_NOT_FOUND: "Invalid Email or Password",
   INVALID_PASSWORD: "Invalid Email or Password",
