@@ -1,4 +1,4 @@
-import {Router} from 'express'
+import { Router } from 'express'
 import { AuthMiddleware } from '../middleware'
 import { CreatePaymentIntent } from '../controllers/payment.controller'
 

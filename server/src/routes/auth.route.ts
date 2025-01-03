@@ -5,9 +5,9 @@ import { AuthMiddleware, RateLimiterMiddleware, ValidationMiddleware } from "../
 
 export const AuthRoute = Router();
 
-AuthRoute.post("/SignUp", 
-RateLimiterMiddleware(ErrorMessage.RATE_LIMIT_ERROR, 2), 
-ValidationMiddleware(SignupSchema), auth.SignUpUser);
+AuthRoute.post("/SignUp",
+    RateLimiterMiddleware(ErrorMessage.RATE_LIMIT_ERROR, 2),
+    ValidationMiddleware(SignupSchema), auth.SignUpUser);
 
 AuthRoute.post("/SignIn", ValidationMiddleware(SigninSchema), auth.SignInUser);
 AuthRoute.post("/SignOutUser", auth.SignOutUser);
