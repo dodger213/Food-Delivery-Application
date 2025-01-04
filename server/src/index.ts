@@ -11,7 +11,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-MongoConnection()
+MongoConnection();
+console.log("Connected to MongoDB");
+
 app.listen(port, () => {
   CustomLogger.info(`Server is up and running on ${port}`)
 })
