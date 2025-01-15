@@ -13,7 +13,6 @@ export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
     return res.status(statusCode).json({ message: error.message });
   }
 
-
   if (error.name === 'TokenExpiredError') {
     res.cookie("foodZone", "", {
       expires: new Date(0),
@@ -23,7 +22,9 @@ export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
     })
     return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: error.message })
   }
-
+  if (error.name === 'JsonWebTokenError') {
+    return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: ErrorMessage.NOT_AUTHORIZED });
+  }
 
   return res.status(statusCode).json({ message: ErrorMessage.DEFAULT_ERROR_MESSAGE });
 };
