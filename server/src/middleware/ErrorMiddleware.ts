@@ -22,6 +22,7 @@ export const ErrorMiddleware: ErrorRequestHandler = (error, req, res, next) => {
     })
     return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: error.message })
   }
+  
   if (error.name === 'JsonWebTokenError') {
     return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: ErrorMessage.NOT_AUTHORIZED });
   }
